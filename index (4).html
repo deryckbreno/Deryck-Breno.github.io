@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feliz Aniversário, Amor!</title>
+  <style>
+    /* Paleta azul vibrante */
+    :root {
+      --azul-royal: #1e40af;
+      --azul-ciano: #22d3ee;
+      --azul-piscina: #60a5fa;
+      --azul-escuro: #0f172a;
+      --azul-claro: #e0f2fe;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--azul-piscina), var(--azul-ciano));
+      margin: 0;
+      padding: 0;
+      color: var(--azul-escuro);
+      font-size: 18px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background-color: rgba(255 255 255 / 0.15);
+      box-shadow: 0 0 30px rgba(34, 211, 238, 0.4);
+      animation: fadeInDown 1.8s ease forwards;
+    }
+
+    header h1 {
+      font-size: 3em;
+      color: var(--azul-royal);
+      margin: 0;
+      text-shadow: 1px 1px 8px var(--azul-ciano);
+    }
+
+    header p {
+      font-size: 1.5em;
+      margin-top: 12px;
+      color: var(--azul-escuro);
+      font-weight: 600;
+      text-shadow: 1px 1px 6px #7dd3fcaa;
+    }
+
+    section {
+      padding: 40px 20px;
+      flex: 1;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-fill-mode: forwards;
+    }
+
+    section:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+    section:nth-child(3) {
+      animation-delay: 0.8s;
+    }
+    section:nth-child(4) {
+      animation-delay: 1.2s;
+    }
+    section:nth-child(5) {
+      animation-delay: 1.6s;
+    }
+
+    section h2 {
+      text-align: center;
+      font-size: 2.2em;
+      color: var(--azul-royal);
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 4px var(--azul-ciano);
+    }
+
+    /* Galeria fotos */
+    .fotos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 22px;
+    }
+
+    .fotos img {
+      width: 260px;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(34, 211, 238, 0.4);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+      cursor: pointer;
+      filter: drop-shadow(0 0 6px #22d3eeaa);
+      will-change: transform, filter;
+    }
+
+    .fotos img:hover {
+      transform: scale(1.08) rotate(1.5deg);
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.7);
+      filter: drop-shadow(0 0 15px #22d3eecc);
+      animation: pulseGlow 2.5s infinite alternate;
+    }
+
+    /* Texto personalizado */
+    .texto-personalizado textarea {
+      width: 90%;
+      max-width: 820px;
+      height: 160px;
+      padding: 22px;
+      font-size: 1.1em;
+      border-radius: 16px;
+      border: 2px solid var(--azul-piscina);
+      display: block;
+      margin: 0 auto;
+      background: var(--azul-claro);
+      resize: vertical;
+      color: var(--azul-escuro);
+      box-shadow: inset 0 0 10px var(--azul-ciano);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      font-weight: 600;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .texto-personalizado textarea:focus {
+      border-color: var(--azul-royal);
+      box-shadow: inset 0 0 16px var(--azul-royal);
+      outline: none;
+    }
+
+    /* Quiz */
+    .quiz {
+      background-color: var(--azul-claro);
+      padding: 24px 0;
+      border-radius: 16px;
+      box-shadow: 0 0 20px var(--azul-ciano);
+      max-width: 840px;
+      margin: 40px auto;
+    }
+
+    .quiz form {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 32px;
+      border-radius: 20px;
+      box-shadow: 0 0 18px var(--azul-piscina);
+      font-weight: 600;
+    }
+
+    .quiz label {
+      display: block;
+      margin-top: 18px;
+      color: var(--azul-royal);
+      font-size: 1.1em;
+      letter-spacing: 0.02em;
+    }
+
+    .quiz input {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 6px;
+      border: 2px solid var(--azul-piscina);
+      border-radius: 10px;
+      font-size: 1.1em;
+      color: var(--azul-escuro);
+      font-weight: 600;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .quiz input:focus {
+      border-color: var(--azul-royal);
+      outline: none;
+      box-shadow: 0 0 12px var(--azul-royal);
+    }
+
+    .quiz button {
+      margin-top: 30px;
+      padding: 14px 28px;
+      background: var(--azul-royal);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: 1.2em;
+      font-weight: 700;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      letter-spacing: 0.04em;
+      box-shadow: 0 5px 15px rgba(30, 64, 175, 0.5);
+    }
+
+    .quiz button:hover {
+      background-color: var(--azul-ciano);
+      box-shadow: 0 6px 20px rgba(34, 211, 238, 0.7);
+    }
+
+    #resultado {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 1.4em;
+      color: var(--azul-royal);
+      font-weight: 700;
+      min-height: 38px;
+      user-select: none;
+      letter-spacing: 0.02em;
+      text-shadow: 0 0 5px var(--azul-ciano);
+    }
+
+    /* Linha do tempo */
+    .timeline {
+      max-width: 1000px;
+      margin: 60px auto 80px;
+      position: relative;
+      padding: 40px 0;
+      animation: fadeIn 2s ease forwards;
+      opacity: 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--azul-royal), var(--azul-ciano));
+      transform: translateX(-50%);
+      border-radius: 6px;
+      box-shadow: 0 0 12px var(--azul-ciano);
+      z-index: 0;
+    }
+
+    .event {
+      background: var(--azul-claro);
+      border-radius: 18px;
+      box-shadow: 0 8px 22px rgba(34, 211, 238, 0.3);
+      padding: 26px;
+      margin: 40px 0;
+      width: 44%;
+      position: relative;
+      opacity: 0;
+      animation: slideIn 1.2s ease forwards;
+      z-index: 1;
+      font-weight: 600;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .event:hover {
+      box-shadow: 0 14px 30px rgba(34, 211, 238, 0.55);
+    }
+
+    .event.left {
+      left: 0;
+      transform: translateX(-120%);
+      animation-delay: 0.3s;
+    }
+
+    .event.right {
+      left: 56%;
+      transform: translateX(120%);
+      animation-delay: 0.6s;
+    }
+
+    .event h3 {
+      color: var(--azul-royal);
+      margin-top: 0;
+      font-size: 1.6em;
+      text-shadow: 0 0 6px var(--azul-ciano);
+    }
+
+    .event p {
+      margin: 10px 0 0;
+      color: var(--azul-escuro);
+      line-height: 1.5;
+      font-size: 1.1em;
+    }
+
+    .event::after {
+      content: '';
+      position: absolute;
+      top: 30px;
+      width: 24px;
+      height: 24px;
+      background: var(--azul-ciano);
+      border: 5px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--azul-ciano);
+      animation: pulse 2.5s infinite ease-in-out;
+      z-index: 2;
+    }
+
+    .event.left::after {
+      right: -14px;
+    }
+
+    .event.right::after {
+      left: -14px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--azul-royal);
+      text-align: center;
+      padding: 36px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.3em;
+      text-shadow: 0 0 6px var(--azul-ciano);
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
+
+    /* Mensagem surpresa */
+    #msgSurpresaBtn {
+      display: block;
+      margin: 30px auto 10px;
+      background-color: var(--azul-ciano);
+      border: none;
+      color: var(--azul-escuro);
+      font-weight: 700;
+      font-size: 1.3em;
+      padding: 12px 28px;
+      border-radius: 16px;
+      cursor: pointer;
+      box-shadow: 0 0 15px var(--azul-ciano);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #msgSurpresaBtn:hover {
+      background-color: var(--azul-piscina);
+      box-shadow: 0 0 22px var(--azul-piscina);
+    }
+
+    #msgSurpresa {
+      max-width: 740px;
+      margin: 20px auto 50px;
+      background-color: var(--azul-claro);
+      border-radius: 20px;
+      padding: 32px 28px;
+      font-size: 1.3em;
+      color: var(--azul-escuro);
+      text-align: center;
+      font-weight: 600;
+      box-shadow: 0 0 18px var(--azul-piscina);
+      display: none;
+      user-select: none;
+    }
+
+    /* Animações */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        filter: drop-shadow(0 0 8px #22d3eecc);
+      }
+      100% {
+        filter: drop-shadow(0 0 18px #22d3eeff);
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 8px var(--azul-ciano);
+      }
+      50% {
+        box-shadow: 0 0 20px var(--azul-ciano);
+      }
+    }
+
+    /* Responsivo */
+    @media (max-width: 940px) {
+      .fotos img {
+        width: 48%;
+      }
+
+      .event {
+        width: 90%;
+        left: 5% !important;
+        transform: translateX(0) !important;
+        margin: 24px auto;
+      }
+
+      .timeline::before {
+        left: 8px;
+        height: 100%;
+      }
+
+      .event::after {
+        left: 0 !important;
+        top: 20px !important;
+      }
+    }
+
+    @media (max-width: 500px) {
+      body {
+        font-size: 16px;
+      }
+
+      .fotos img {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Feliz Aniversário, Amor!🤍♾️</h1>
+    <p>Que esse dia seja tão lindo quanto você!</p>
+  </header>
+
+  <section class="texto-personalizado">
+    <h2>Minha Mensagem para Você</h2>
+    <textarea readonly>
+Amor eu sei o quanto vc me ama, você é a melhor coisa que aconteceu na minha vida o motivo de eu levantar com disposição pra enfrentar o mundo é vc amor vc me dá forças motivos pra continuar minha vida de ir atrás dos meus sonhos. Eu penso em vc 24 hrs por dia, quando fico sem ver vc 1 dia já não fico tão animado eu queria estar do seu lado 24 hrs por porque 1 segundo longe de vc já não me sinto bem.eu amo tudo em vc  tudo mesmo todos os seus traços o seu sorriso seu cabelo seu pé tudo vc é uma mulher incrível forte e tem um coração gigante enorme eu te amo muito amor.desde do dia em q a gente ficou pela primeira vez meus dias não foram os mesmos vc mudou minha vida eu quero vc nela pra sempre até o último respiro quero casar com vc ter filhos uma família conquistar nossas coisas e subir na vida juntos 1 ajudando o outro lado a lado. Quando eu fico meio triste sla quando acontece alguma coisa ruim na minha vida a primeira coisa me dá mais motivo pra enfrentar isso é vc, vc me dá forças amor vc me deixa forte vc é a pessoa mais importante do mundo pra mim amor. 
+EU TE AMO INFINITAMENTE AMOR 🤍♾️ esse amor que eu sinto por vc nunca vai acabar eu te amo muito amor 🤍♾️
+
+Amor Eu te Amo muito muito mesmo, eu quero dar tudo para vc tudo que vc precisa eu quero amar vc cada dia mais sentir seu cheiro, ouvir sua risada me deitar com vc quero que vc seja a mulher da minha vida vc já é. Por mais que as vezes eu não consiga de dar tanta atenção por conta do meu trabalho da faculdade eu fico pensando se vc tá ficando triste por Isso eu sei que as vezes é difícil de entender mas eu sempre fico pensando em vc sempre mesmo vc é a razão da minha vida eu nunca vou esquecer de nenhum momento em q passamos juntos nunca, eu não quero um dia se quer ficar sem falar com vc , vc me dá forças vc me motiva. Agr te esse negócio da faculdade isso me deixou tão mal não é nem por paga tbm é mas eu me sinto um burro por não conseguir fazer o mínimo vc me motiva amor se não fosse vc eu estaria bem pior, eu fico pensando aqui que Deus deu mais uma oportunidade para mim tem a última avaliação e eu vou fazer de um jeito ou de outro eu vou passar em todas e me desculpa por ter ficado de AF na de terça eu juro por deus q próximo semestre vai ser diferente. Amor eu nunca vou deixar de te amar 🤍♾️ 
+EU TE AMOR INFINITAMENTE AMOR 🤍♾️♾️♾️♾️♾️♾️♾️♾️🤍
+
+
+
+— Seu amor
+    </textarea>
+  </section>
+
+  <section>
+    <h2>Galeria de Fotos</h2>
+    <div class="fotos">
+      <img src="foto4.jpg.jpg" alt="Foto 1" />
+      <img src="foto3.jpg" alt="Foto 2" />
+      <img src="foto2.jpg" alt="Foto 3" />
+      <img src="foto.jpge.jpg" alt="Foto 4" />
+    </div>
+  </section>
+ <div class="fotos">
+      <img src="FOTO5.jpg." alt="Foto 1" />
+      <img src="FOTO6.jpg" alt="Foto 2" />
+      <img src="FOTO7.jpg" alt="Foto 3" />
+      <img src="FOTO8.jpg" />
+    </div>
+  <section class="quiz">
+    <h2>Quiz do Nosso Amor</h2>
+    <form id="quizForm">
+      <label for="pergunta1">1. Onde nos conhecemos?</label>
+      <input id="pergunta1" name="pergunta1" type="text" required />
+
+      <label for="pergunta2">2. Qual a minha cor favorita?</label>
+      <input id="pergunta2" name="pergunta2" type="text" required />
+
+      <label for="pergunta3">3. Qual a data do nosso primeiro encontro?</label>
+      <input id="pergunta3" name="pergunta3" type="text" placeholder="dd/mm/aaaa" required />
+
+      <label for="pergunta4">4. Qual prato você sempre pede quando estamos juntos?</label>
+      <input id="pergunta4" name="pergunta4" type="text" required />
+
+      <label for="pergunta5">5.que dia eu entreguei a aliança pra v?</label>
+      <input id="pergunta5" name="pergunta5" type="text" required />
+
+      <label for="pergunta6">6. Qual nosso destino de viagem dos sonhos?</label>
+      <input id="pergunta6" name="pergunta6" type="text" required />
+
+      <label for="pergunta7">7. Qual meu doce preferido?</label>
+      <input id="pergunta7" name="pergunta7" type="text" required />
+
+      <label for="pergunta8">8. Onde demos nosso primeiro beijo?</label>
+      <input id="pergunta8" name="pergunta8" type="text" required />
+
+      <label for="pergunta9">9. Qual sobremesa você sempre faz para mim?</label>
+      <input id="pergunta9" name="pergunta9" type="text" required />
+
+      <label for="pergunta10">10. Qual meu hobby preferido?</label>
+      <input id="pergunta10" name="pergunta10" type="text" required />
+
+      <label for="pergunta11">11. O que eu sempre digo quando estou feliz?</label>
+      <input id="pergunta11" name="pergunta11" type="text" required />
+
+      <button type="submit">Enviar Respostas</button>
+    </form>
+    <div id="resultado"></div>
+  </section>
+
+  <section class="timeline">
+    <h2>Nossa linha do tempo Amor</h2>
+    <div class="event left">
+      <h3>Nos conhecemos</h3>
+     <p>Foi na escola, a gente ja tinha contato durante o ano inteiro mas nunca tinhamos se aproximados.
+        foi no interclasse q claramente foi uns dos melhores dia da minha vida de lá pra cá tudo mudou.</p>
+    </div>
+    <div class="event right">
+      <h3>Primeiro encontro</h3>
+      <p>Nosso primeiro encontro aconteceu em 13/09/2024, um dia inesquecível.
+        lembro até hj da gente felizes que o ingresso estavam barato, vc ligando pra sua mãe e pedindo
+        para ela.
+      </p>
+    </div>
+    <div class="event left">
+      <h3>Viagem inesquecível</h3>
+      <p>Fomos juntos para a praia grande, onde passamos momentos mágicos. vc tinha me falado que nunca tinha
+        feito isso viajado sem sua mae ou seu pai. concerteza a gente nunca vai esquecer nada disso.quando a gente
+        viajou no final do ano foi a melhor viagem da minha vida momentos inesquecível que nunca iremos esquecer
+      </p>
+    </div>
+  </section>
+
+  <button id="msgSurpresaBtn">Mostrar Mensagem Surpresa</button>
+  <div id="msgSurpresa">
+   EU NUNCA VOU TE ABANDONAR PQ EU TE AMO!!! 🎂❤️
+  </div>
+
+  <footer>
+    <p>EU TE AMO INFINITAMENTE MINHA PRINCESA❤️.</p>
+  </footer>
+
+  <script>
+    // Quiz respostas corretas
+    const respostas = [
+      "escola",
+      "azul",
+      "30/08/2024",
+      "lasanha",
+      "7/02/2025",
+      "praia",
+      "mel",
+      "praça",
+      "pudim",
+      "jogar",
+      "sorriso"
+    ];
+
+    document.getElementById('quizForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const resultado = document.getElementById('resultado');
+      const form = e.target;
+
+      let acertos = 0;
+
+      for (let i = 1; i <= respostas.length; i++) {
+        const respostaUsuario = form[`pergunta${i}`].value.trim().toLowerCase();
+        const respostaCorreta = respostas[i - 1].toLowerCase();
+        if (respostaUsuario === respostaCorreta) {
+          acertos++;
+        }
+      }
+
+      resultado.textContent = `Você acertou ${acertos} de ${respostas.length} perguntas! ${
+        acertos === respostas.length
+          ? "Você me conhece perfeitamente! 🎉"
+          : "Continue tentando, você está quase lá! ❤️"
+      }`;
+    });
+
+    // Mensagem surpresa
+    const btnMsg = document.getElementById('msgSurpresaBtn');
+    const msgSurpresa = document.getElementById('msgSurpresa');
+
+    btnMsg.addEventListener('click', () => {
+      if (msgSurpresa.style.display === 'none' || msgSurpresa.style.display === '') {
+        msgSurpresa.style.display = 'block';
+        btnMsg.textContent = 'Esconder Mensagem Surpresa';
+      } else {
+        msgSurpresa.style.display = 'none';
+        btnMsg.textContent = 'Mostrar Mensagem Surpresa';
+      }
+    });
+  </script>
+</body>
+</html>
